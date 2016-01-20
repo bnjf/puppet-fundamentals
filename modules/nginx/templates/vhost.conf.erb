@@ -4,8 +4,8 @@
 # The default server
 #
 server {
-    listen       80 default_server;
-    server_name  _;
+    listen       80 <% if @server_name == "_" %> "default_server" <% end %>;
+    server_name  <%= @server_name %>;
 
     #charset koi8-r;
 
@@ -15,7 +15,7 @@ server {
     include <%= @config_directory %>/default.d/*.conf;
 
     location / {
-        root   <%= @document_root %>
+        root   <%= @document_root %>;
         index  index.html index.htm;
     }
 

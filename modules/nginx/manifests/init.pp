@@ -73,15 +73,10 @@ class nginx {
     content => template('nginx/nginx.conf.erb'),
   }
 
-  # try $::kernel first, filename is ...-Linux.
-  file { "${config_directory}/conf.d/default.conf":
-    ensure  => file,
-    content => template('nginx/default.conf.erb'),
-  }
+  nginx::vhost { "_": document_root => "${document_root}/_" }
 
   service { $service_name:
     ensure => running,
     enable => true,
-
   }
 }
