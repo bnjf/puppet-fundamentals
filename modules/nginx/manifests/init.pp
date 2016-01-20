@@ -1,5 +1,7 @@
 
-class nginx {
+class nginx (
+  $root = false
+) {
   # install nginx
 
   case $::osfamily {
@@ -39,6 +41,10 @@ class nginx {
     default: {
       fail("${operatingsystem} not supported")
     }
+  }
+
+  if $root {
+    $document_root = $root
   }
 
   # set some defaults for the files
