@@ -1,4 +1,4 @@
-# default-linux.conf
+# default.conf
 
 #
 # The default server
@@ -12,10 +12,10 @@ server {
     #access_log  logs/host.access.log  main;
 
     # Load configuration files for the default server block.
-    include /etc/nginx/default.d/*.conf;
+    include <%= @config_directory %>/default.d/*.conf;
 
     location / {
-        root   /var/www;
+        root   <%= @document_root %>
         index  index.html index.htm;
     }
 
