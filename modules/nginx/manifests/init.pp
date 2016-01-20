@@ -63,10 +63,6 @@ class nginx {
     group  => $file_group
   }
 
-  file { "${document_root}/index.html":
-    ensure  => file,
-    content => template('nginx/index.html.erb'),
-  }
 
   file { "${config_directory}/nginx.conf":
     ensure  => file,
