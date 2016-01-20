@@ -69,21 +69,14 @@ class nginx {
   }
 
   file { "${config_directory}/nginx.conf":
-    source => [
-      "puppet:///modules/nginx/${::osfamily}.conf",
-      "puppet:///modules/nginx/nginx.conf",
-    ],
-    notify => Service['nginx'],
+    ensure  => file,
+    content => template('nginx/nginx.conf.erb'),
   }
 
   # try $::kernel first, filename is ...-Linux.
   file { "${config_directory}/conf.d/default.conf":
-    source => [
-      "puppet:///modules/nginx/default-${::kernel}.conf",
-      "puppet:///modules/nginx/default-${::osfamily}.conf",
-      "puppet:///modules/nginx/default.conf",
-    ],
-    notify => Service['nginx'],
+    ensure  => file,
+    content => template('nginx/default.conf.erb'),
   }
 
   service { $service_name:
