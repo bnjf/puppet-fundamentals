@@ -69,6 +69,10 @@ class nginx (
     group  => $file_group
   }
 
+  # nuke the default config
+  file { "${server_block_directory}/default.conf":
+    ensure => absent,
+  }
 
   file { "${config_directory}/nginx.conf":
     ensure  => file,
