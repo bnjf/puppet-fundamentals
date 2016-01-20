@@ -1,6 +1,7 @@
 
 
 class nginx::params {
+
   case $::osfamily {
     'redhat': {
       $package_name = 'nginx'
@@ -38,10 +39,6 @@ class nginx::params {
     default: {
       fail("${operatingsystem} not supported")
     }
-  }
-
-  if $root {
-    $document_root = $root
   }
 
 }

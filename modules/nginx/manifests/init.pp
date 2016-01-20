@@ -1,8 +1,18 @@
 
 class nginx (
-  $root = false
+  $document_root = hiera("nginx::root", nginx::params::document_root),
+  $package_name = $nginx::params::package_name,
+  $file_owner = $nginx::params::file_owner,
+  $file_group = $nginx::params::file_group,
+  $config_directory = $nginx::params::config_directory,
+  $server_block_directory = $nginx::params::server_block_directory,
+  $logs_directory = $nginx::params::logs_directory,
+  $service_name = $nginx::params::service_name,
+  $user_service_runs_as = $nginx::params::user_service_runs_as
 ) inherits nginx::params {
   # install nginx
+
+  notify { "got root=$root document_root=$document_root": }
 
   # set some defaults for the files
   File {
