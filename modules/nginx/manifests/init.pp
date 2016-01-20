@@ -1,6 +1,14 @@
 
 class nginx {
   # install nginx
+
+  # set some defaults for the files
+  File {
+    owner => 'root',
+    group => 'root',
+    mode  => 420,
+  }
+
   package { 'nginx':
     ensure => installed,
   }
