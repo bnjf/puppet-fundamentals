@@ -1,6 +1,6 @@
 
 class nginx (
-  $document_root = hiera("nginx::root", nginx::params::document_root),
+  $document_root = hiera("nginx::root", $nginx::params::document_root),
   $package_name = $nginx::params::package_name,
   $file_owner = $nginx::params::file_owner,
   $file_group = $nginx::params::file_group,
